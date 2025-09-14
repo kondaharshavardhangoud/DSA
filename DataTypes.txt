@@ -1,0 +1,186 @@
+Datatypes act like containers (or boxes) that are used to store variables.
+In Java, every variable must be explicitly declared with a datatype. 
+This helps the compiler to:
+Catch errors at compile-time – prevents invalid operations on incompatible data.
+Use memory efficiently – allocates only the required amount of memory for the variable.
+Define valid operations – determines what kind of operations (arithmetic, logical, etc.) can be performed on the stored data.
+Types of Datatypes in Java
+
+1. Primitive Datatypes
+These are the basic, built-in types provided by Java:
+byte – 1 byte (range: –128 to 127)
+short – 2 bytes
+int – 4 bytes (default integer type)
+long – 8 bytes
+char – 2 bytes (stores a single Unicode character)
+float – 4 bytes (single-precision decimal)
+double – 8 bytes (double-precision decimal, default for floating-point)
+boolean – 1 bit (true/false, size depends on JVM implementation)
+
+2. Non-Primitive Datatypes(Reference Datatypes)
+These are created by the programmer or provided as Java classes:
+Arrays
+Strings
+Classes (user-defined)
+Interfaces
+
+ Arrays
+An **array** is a datatype that stores multiple elements of the **same type** in **contiguous memory locations** of fixed size.
+* Arrays are **0-indexed**, meaning the first element starts at index 0.
+* The memory address of an element is calculated as:
+
+  ```
+  Address of element[i] = Base address + (i × size_of_element)
+  ```
+
+### Example:
+
+```java
+int[] arr = {10, 20, 30, 40};
+```
+
+* Suppose base address = 1000, size of each `int` = 4 bytes.
+
+| Index | Element | Address Calculation | Actual Address |
+| ----- | ------- | ------------------- | -------------- |
+| 0     | 10      | 1000 + (0 × 4)      | 1000           |
+| 1     | 20      | 1000 + (1 × 4)      | 1004           |
+| 2     | 30      | 1000 + (2 × 4)      | 1008           |
+| 3     | 40      | 1000 + (3 × 4)      | 1012           |
+
+👉 Data is accessed using **index values**.
+
+### Time Complexities (Big-O)
+
+* **Access (read/write)** → O(1) (direct index access).
+* **Insertion** →
+
+  * At the end (if space exists) → O(1).
+  * At a specific index → O(n) (shift elements).
+* **Deletion** → O(n) (shifting elements after deletion).
+* **Search** →
+
+  * Linear search → O(n).
+  * Binary search (sorted array) → O(log n).
+
+---
+
+## Strings
+
+* A **String** is a **class** in Java (`java.lang.String`) that represents a **sequence of characters**.
+* Strings are **immutable** → once created, their value cannot be changed.
+* Strings are **indexed from 0** (just like arrays).
+* Length of a string can be found using:
+
+  ```java
+  String str = "Java";
+  System.out.println(str.length()); // Output: 4
+  ```
+
+### Example:
+
+```java
+String str = "Hello";
+System.out.println(str.charAt(0)); // Output: H
+```
+
+### Important Points about Strings
+
+* String literals are stored in the **String Pool** (for memory efficiency).
+* Common methods:
+
+  * `length()` → number of characters.
+  * `charAt(index)` → character at position.
+  * `substring(start, end)` → extract substring.
+  * `equals()` / `equalsIgnoreCase()` → compare strings.
+  * `toUpperCase()`, `toLowerCase()`.
+* If we need a **mutable string**, we use **`StringBuilder`** or **`StringBuffer`**.
+
+String Constant Pool (SCP) in Java
+
+SCP is a special memory area inside the Heap, where string literals are stored.
+
+Purpose: avoid duplicate strings and save memory.
+
+Case 1: String Literal
+String s1 = "Java";
+String s2 = "Java";
+
+
+"Java" is created in the String Constant Pool.
+
+s1 and s2 both point to the same object in SCP (no duplicate is created).
+
+👉 Memory-efficient.
+
+Case 2: Using new Keyword
+String s1 = new String("Java");
+String s2 = new String("Java");
+
+
+Here, two objects are created:
+
+"Java" in the SCP (if not already there).
+
+A new String object in the Heap (created every time new is used).
+
+So s1 and s2 point to different objects, even though both contain "Java".
+
+👉 That’s why:
+
+System.out.println(s1 == s2);   // false  (different references)
+System.out.println(s1.equals(s2)); // true (same content)
+
+Difference between == and .equals() in Java
+1. == Operator
+
+Used for primitive types → compares values.
+
+Used for reference types (objects, Strings, arrays, etc.) → compares memory references (whether both variables point to the same object).
+
+2. .equals() Method
+
+Defined in the Object class (superclass of all classes in Java).
+
+By default → compares references (same as ==).
+
+But overridden in many classes (like String, Integer, List, etc.) to compare actual values/content instead of references.
+
+✅ Examples
+Case 1: Primitives
+int a = 10;
+int b = 10;
+
+System.out.println(a == b);      // true (compares values)
+
+Case 2: Strings (literal vs new)
+String s1 = "Java";
+String s2 = "Java";
+String s3 = new String("Java");
+
+System.out.println(s1 == s2);       // true (same SCP object)
+System.out.println(s1 == s3);       // false (s3 is new object in Heap)
+System.out.println(s1.equals(s3));  // true (compares actual content)
+
+Case 3: Custom Objects
+class Student {
+    int id;
+    Student(int id) { this.id = id; }
+}
+
+Student st1 = new Student(101);
+Student st2 = new Student(101);
+
+System.out.println(st1 == st2);       // false (different objects in memory)
+System.out.println(st1.equals(st2));  // false (default equals() = reference check)
+
+
+👉 If we override .equals() in Student class to compare id, then equals() can return true.
+📌 Quick Summary for Exams/Interviews
+== →
+
+For primitives: compares values.
+For objects: compares references.
+.equals() →
+By default: reference check (from Object).
+Often overridden: to compare content (like in String).

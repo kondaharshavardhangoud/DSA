@@ -1,0 +1,101 @@
+Functions in Java
+✅ Definition
+
+A function (method) in Java is a block of code designed to perform a specific task.
+
+Functions improve code reusability, readability, and modularity.
+
+A function is defined once and can be executed (called) multiple times.
+
+✅ General Syntax
+returnType functionName(parameters) {
+    // body of the function
+    return value; // if returnType is not void
+}
+
+
+Example:
+
+int add(int a, int b) {
+    return a + b;
+}
+
+🔹 Pass by Value vs Pass by Reference in Java
+
+👉 Important Note:
+In Java, everything is pass by value, but the value passed can be a primitive value or a reference value (address of an object). This sometimes creates confusion.
+
+1. Pass by Value (Primitives)
+
+When primitive data types (int, double, char, etc.) are passed to a function, their values are copied into the method’s parameters.
+
+Any modification inside the function does not affect the original variable.
+
+Example:
+
+public class Test {
+    public static void main(String[] args) {
+        int x = 10;
+        changeValue(x);
+        System.out.println("Original: " + x); // 10
+    }
+
+    static void changeValue(int num) {
+        num = 20; // only local copy changes
+    }
+}
+
+2. Pass by Reference (Objects / Arrays)
+
+Java does not truly support pass by reference.
+
+But when objects or arrays are passed, the reference (address) value is copied.
+
+Both the original variable and the parameter point to the same object in memory.
+
+Changing object data inside the function affects the original object.
+
+Example:
+
+public class Test {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3};
+        modifyArray(arr);
+        System.out.println(arr[0]); // 100 → original array changed
+    }
+
+    static void modifyArray(int[] a) {
+        a[0] = 100;
+    }
+}
+
+
+⚠️ But note: if you reassign the reference inside the function, it won’t affect the original.
+
+🔹 Key Differences
+Aspect	Pass by Value (Primitives)	Pass by Reference-like (Objects/Arrays)
+Data passed	Actual value	Copy of object reference
+Effect on original	No effect	Object data can change
+Reassignment effect	No effect	No effect (reassignment only changes local reference)
+Example	int, double, char	Arrays, Strings, Objects
+
+Why Java is Pass by Value, Not Pass by Reference
+✅ Key Concept
+
+In true pass by reference, the method receives a direct alias to the caller’s variable.
+
+In Java, the method always receives a copy of the value — whether it’s a primitive value or a reference value (address of an object).
+
+🔹 Case 1: Primitives
+
+A primitive (e.g., int x = 10) → the actual value 10 is copied.
+
+Method works on its own copy → changes don’t affect the caller’s variable.
+
+🔹 Case 2: Objects
+
+For objects, the value copied is the reference (memory address) of the object.
+
+Since both the caller and the method parameter point to the same object in heap, modifying object fields inside the method affects the original object.
+
+❌ BUT → if the method reassigns the reference, it only changes the local copy; the caller’s reference still points to the original object.

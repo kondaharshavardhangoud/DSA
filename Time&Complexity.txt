@@ -1,0 +1,65 @@
+## 🔹 Time Complexity
+
+* **Definition:**
+  Time complexity is the amount of **time (number of basic steps/operations)** an algorithm takes to run as a function of the input size **N**.
+  We don’t measure actual “seconds” (because that depends on CPU, compiler, OS).
+  Instead, we count the number of operations.
+
+* **Notation:**
+  We use **Big-O notation `O()`** to represent the **upper bound** of growth rate (worst case).
+  Other notations also exist:
+
+  * **O() → Big-O** (upper bound, worst case)
+  * **Ω() → Big-Omega** (lower bound, best case)
+  * **Θ() → Big-Theta** (tight bound, average/exact growth)
+
+* **Example:**
+
+  ```java
+  for (int i = 0; i < N; i++) {
+      System.out.println(i);
+  }
+  ```
+
+  Runs **N times**, so time complexity = **O(N)**.
+
+---
+
+## 🔹 Space Complexity
+
+* **Definition:**
+  Space complexity is the **total memory** an algorithm/program needs to execute, as a function of input size **N**.
+
+* **It is made up of two parts:**
+
+  1. **Input Space** → Memory needed to store input data.
+     (e.g., an array of size N needs O(N) space)
+  2. **Auxiliary Space** → Extra/temporary memory used by the algorithm.
+     (e.g., variables, recursion stack, extra data structures like hashmaps, queues)
+
+* **Example:**
+
+  ```java
+  int sum(int[] arr, int N) {
+      int total = 0;  // constant extra variable → O(1)
+      for (int i = 0; i < N; i++) {
+          total += arr[i];
+      }
+      return total;
+  }
+  ```
+
+  * Input space = O(N) (the array itself)
+  * Auxiliary space = O(1) (just one variable `total`)
+  * Total space complexity = **O(N + 1) = O(N)**
+
+---
+
+## 🔹 Summary
+
+* **Time Complexity →** How many steps (operations) with respect to input size.
+  Written as **O()**.
+* **Space Complexity →** How much memory is used = Input Space + Auxiliary Space.
+  Written as **O()**.
+
+---
