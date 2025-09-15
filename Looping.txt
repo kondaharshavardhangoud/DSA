@@ -1,0 +1,194 @@
+# 🔹 Loops in Programming (Interview Preparation)
+
+### ✅ Definition
+
+A **loop** is a control structure that allows a block of code to be executed **repeatedly** until a specified condition is met.
+
+### ✅ Key Components of Any Loop
+
+1. **Initialization** → starting point of the loop variable.
+2. **Condition/Test Expression** → checked before (or after) each iteration.
+3. **Body of Loop** → statements to execute.
+4. **Update (Increment/Decrement)** → changes the loop variable.
+
+If the **condition is true**, the loop runs; if **false**, the loop terminates.
+
+---
+
+## 🔹 1. For Loop
+
+* **When to use:** Number of iterations is **known** beforehand.
+
+* **Syntax:**
+
+  ```java
+  for(initialization; condition; increment/decrement) {
+      // body
+  }
+  ```
+
+* **Execution Flow:**
+
+  1. Initialization executes once.
+  2. Condition checked → if true, body executes.
+  3. Increment/Decrement updates variable.
+  4. Condition checked again → continues until false.
+
+* **Example:**
+
+  ```java
+  for(int i = 0; i < 5; i++) {
+      System.out.println(i);
+  }
+  ```
+
+* **Output:** `0 1 2 3 4`
+
+* **Special Forms:**
+
+  * Infinite Loop:
+
+    ```java
+    for(;;) {
+        // runs forever
+    }
+    ```
+  * Enhanced For (For-each loop): Used for arrays/collections.
+
+    ```java
+    int[] arr = {1, 2, 3};
+    for(int num : arr) {
+        System.out.println(num);
+    }
+    ```
+
+---
+
+## 🔹 2. While Loop
+
+* **When to use:** Number of iterations is **unknown**, condition-based (e.g., reading a file).
+
+* **Syntax:**
+
+  ```java
+  while(condition) {
+      // body
+  }
+  ```
+
+* **Execution Flow:**
+
+  1. Condition checked first.
+  2. If true → body executes.
+  3. Update must be handled inside loop.
+  4. Condition checked again until false.
+
+* **Example:**
+
+  ```java
+  int i = 0;
+  while(i < 5) {
+      System.out.println(i);
+      i++;
+  }
+  ```
+
+---
+
+## 🔹 3. Do-While Loop
+
+* **When to use:** At least **one execution is guaranteed** (condition checked after body).
+* **Syntax:**
+
+  ```java
+  do {
+      // body
+  } while(condition);
+  ```
+* **Example:**
+
+  ```java
+  int i = 0;
+  do {
+      System.out.println(i);
+      i++;
+  } while(i < 5);
+  ```
+
+---
+
+## 🔹 4. Nested Loops
+
+* A loop inside another loop.
+* Often used in **matrices, pattern printing, searching algorithms**.
+* Example (multiplication table):
+
+  ```java
+  for(int i = 1; i <= 3; i++) {
+      for(int j = 1; j <= 3; j++) {
+          System.out.print(i * j + " ");
+      }
+      System.out.println();
+  }
+  ```
+
+---
+
+## 🔹 5. Control Statements in Loops
+
+* **break** → terminates the loop immediately.
+* **continue** → skips current iteration and moves to next.
+* **return** → exits the loop *and the method*.
+
+---
+
+## 🔹 6. Infinite Loops
+
+* If exit condition is not given correctly → loop runs forever.
+* Example:
+
+  ```java
+  while(true) {
+      // infinite loop
+  }
+  ```
+* ⚠️ Can cause high CPU/memory usage → crash system.
+
+---
+
+## 🔹 7. Time Complexity of Loops
+
+* **Single loop (n iterations):** `O(n)`
+* **Nested loop (n × m):** `O(n*m)`
+* **Infinite loop:** undefined (non-terminating).
+
+---
+
+## 🔹 8. For vs While vs Do-While (Comparison Table)
+
+| Feature         | For Loop           | While Loop         | Do-While Loop           |
+| --------------- | ------------------ | ------------------ | ----------------------- |
+| Condition check | Before body        | Before body        | After body              |
+| Execution count | 0 or more          | 0 or more          | 1 or more               |
+| Use case        | Known iterations   | Unknown iterations | At least once execution |
+| Initialization  | Inside loop header | Before loop        | Before loop             |
+| Increment       | Inside loop header | Inside body        | Inside body             |
+
+---
+
+## 🔹 9. Real-world Examples
+
+* **For Loop:** Iterating over array indices.
+* **While Loop:** Keep reading file lines until EOF.
+* **Do-While Loop:** Menu-driven program where the menu must show at least once.
+
+---
+
+## 🔹 10. Interview Tips
+
+1. Be ready to **compare loops** and explain **when to use each**.
+2. Be able to detect **infinite loop traps**.
+3. Know **time complexity** when nesting loops.
+4. Use examples from **real projects** (file reading, DB rows, arrays).
+
+---
