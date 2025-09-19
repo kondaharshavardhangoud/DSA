@@ -1,3 +1,4 @@
+package HashingUsingArrays;
 import java.util.Scanner;
 
 public class HashingOfCharacters {
