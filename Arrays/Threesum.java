@@ -52,6 +52,7 @@ public class Threesum {
                     result.add(lt);
                     j++;
                     k--;
+                    //skip duplicates
                     while(j<k && nums[j]==nums[j-1]) j++;
                     while(j<k && nums[k]==nums[k-1]) k--;
                 }
