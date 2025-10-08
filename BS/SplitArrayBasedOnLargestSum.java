@@ -33,7 +33,7 @@ public class SplitArrayBasedOnLargestSum {
         }
         while(low<=high){
             int mid = (low+high)/2;
-            if(possible(arr, mid, m)<=m){
+            if(possible(arr, mid)<=m){
                 ans = mid;
                 high = mid-1;
             }else{
@@ -42,7 +42,7 @@ public class SplitArrayBasedOnLargestSum {
         }
         return ans;
     }
-    private static int possible(int[] arr, int i, int m) {
+    private static int possible(int[] arr, int i) {
         int numberOfArrays =1;
         int sum =0;
         for(int a : arr){
