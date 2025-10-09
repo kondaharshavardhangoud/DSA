@@ -1,25 +1,67 @@
 package Strings;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class ReversingWords {
+    // private static String reversedWords(String s){
+    //     int left =0;
+    //     int right = s.length()-1;
+    //     String temp ="";
+    //     String ans = "";
+    //     while (left<=right && s.charAt(left)==' ') {
+    //         left++;
+    //     } 
+    //      while (right>=left && s.charAt(right)==' ') {
+    //         right--;
+    //     } 
+    //     while (left<=right) {
+    //        char ch = s.charAt(left);
+    //        if(ch!=' '){
+    //          temp += ch;
+    //        }else if(ch==' '){
+    //          ans = temp + (ans.equals("")?"":" " +ans);
+    //          // adding comming temp + previous ans
+    //          // if ans is empty then add nothing else add space + previous present ans
+    //          temp = "";
+    //        }
+    //        left++;
+    //     }
+    //     if(!temp.equals("")){
+    //         ans = temp + (ans.equals("")?"":" "+ans);
+    //     }
+    //    return ans; 
+    // }
+
     private static String reversedWords(String s){
-        int size = s.length();
-        StringBuilder sbFinal = new StringBuilder();
-        ArrayList<String> lt = new ArrayList<>();
-        int j=0;
-        for(int i=0;i<size;i++){
-             StringBuilder sb = new StringBuilder();
-            if(s.charAt(i)==' '){
-                lt.add(s);
-            }else{
-              sb.append(s.charAt(i));
+        Stack<String> st = new Stack<>();
+        int left =0;
+        int right = s.length()-1;
+        String temp ="";
+        while (left<=right) {
+            char ch = s.charAt(left);
+            if(ch!=' '){
+                temp += ch;
+            }else if(ch==' '){
+                st.push(temp);
+                temp="";
             }
+            left++;
         }
-        for(int i=lt.size()-1;i>=0;i--){
-            sbFinal.append(lt.get(i)+' ');
+        if(!temp.equals("")){
+            st.push(temp);
         }
-        return sbFinal.toString();
+        // because at last we don't have any space it exit loop but we have word in temp so
+        // adding it at last
+        String ans ="";
+        while(st.size()!=1){
+            ans += st.peek()+" ";
+            st.pop();
+        }
+        ans += st.peek();
+        // we took 1 for checking stack size so that one word left at 
+        //stack and we can add it at end without extra spacd
+        return ans;
     }
     public static void main(String[] args) {
         String st = "this is an amazing program";
