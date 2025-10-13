@@ -17,17 +17,26 @@ public class ReverseLL {
        printLL(reverseHead);
     }
 
+    // private static Node reverseLL(Node head) {
+    //     Node temp =null;
+    //     Node current = head;
+    //     while(current!=null){
+    //         Node link = current.next;
+    //         current.next = temp;
+    //         temp=current;
+    //         current = link;
+    //     }
+    //     return temp;
+    // }
     private static Node reverseLL(Node head) {
-        Node temp =null;
-        Node current = head;
-        while(current!=null){
-            Node link = current.next;
-            current.next = temp;
-            temp=current;
-            current = link;
+        if(head==null || head.next==null) return head;
+        Node reverseHead = reverseLL(head.next);
+        Node front = head.next;
+        front.next=head;
+        head.next=null;
+        return reverseHead;
         }
-        return temp;
-    }
+        
     public static void printLL(Node head){
         while (head!=null) {
             System.out.print(head.data+"->");
